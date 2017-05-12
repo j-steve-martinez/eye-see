@@ -15,18 +15,23 @@ export default class Header extends React.Component {
         this.props.router(e.target.id);
     }
     render() {
-        // console.log('header props');
-        // console.log(this.props);
-        /**
-         * Login links should be:
-         *  All Books
-         *  My Books
-         *  Configure glyphicon
-         *  Logout glyphicon
-         */
+        console.log('header props');
+        console.log(this.props);
+
+        if (this.props.auth._id !== false) {
+            var username = '@' + this.props.auth.email;
+            var icon = this.props.auth.icon;
+            var name = this.props.auth.name;
+            var img = <img id='twitter-icon' src={icon} alt={name} />
+        } else {
+            var img = null;
+        }
+
         var logout = (
-            <div>
+            <span>
                 <ul className="nav navbar-nav">
+                    
+                    <li><a id="user" onClick={this.cH} href="#">{username}</a></li>
                     <li className="dropdown">
                         <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add Image <span className="caret"></span></a>
                         <ul className="dropdown-menu">
@@ -40,6 +45,7 @@ export default class Header extends React.Component {
                                     <label htmlFor="caption">Caption:</label>
                                     <input type="text" className="form-control" id="caption" required />
                                 </div>
+                                <br />
                                 <button type="submit" className="btn btn-primary btn-block">Submit</button>
                             </form>
                         </ul>
@@ -47,11 +53,10 @@ export default class Header extends React.Component {
                 </ul>
                 <ul className="nav navbar-nav navbar-right" >
                     <li><a id="all" onClick={this.cH} href="#"><span className="glyphicon glyphicon-th"></span> All Pics</a></li>
-                    <li><a id="user" onClick={this.cH} href="#"><span className="glyphicon glyphicon-user"></span> My Pics</a></li>
                     <li><a id="logout" onClick={this.cH} href="#"><span className="glyphicon glyphicon-log-out"></span> Logout</a></li>
                     <li><a id="about" onClick={this.cH} href="#"><span className="glyphicon glyphicon-question-sign"></span> About</a></li>
                 </ul>
-            </div>
+            </span>
         );
         var login = (
             <ul className="nav navbar-nav navbar-right" >
@@ -78,18 +83,19 @@ export default class Header extends React.Component {
                 <div className="container-fluid">
 
                     <div className="navbar-header">
-                        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse" aria-expanded="false">
                             <span className="sr-only">Toggle navigation</span>
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        {/*<a className="navbar-brand" href="#">Brand</a>*/}
                         <a id="start" onClick={this.cH} className="navbar-brand" href="#">{this.state.appName}</a>
+                        {img}
                     </div>
+                    <span className="collapse navbar-collapse" id="collapse" >
+                        {navs}
+                    </span>
                 </div>
-                {navs}
-
             </nav>
         );
     }

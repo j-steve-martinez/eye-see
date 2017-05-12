@@ -4836,21 +4836,33 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            // console.log('header props');
-	            // console.log(this.props);
-	            /**
-	             * Login links should be:
-	             *  All Books
-	             *  My Books
-	             *  Configure glyphicon
-	             *  Logout glyphicon
-	             */
+	            console.log('header props');
+	            console.log(this.props);
+
+	            if (this.props.auth._id !== false) {
+	                var username = '@' + this.props.auth.email;
+	                var icon = this.props.auth.icon;
+	                var name = this.props.auth.name;
+	                var img = _react2.default.createElement('img', { id: 'twitter-icon', src: icon, alt: name });
+	            } else {
+	                var img = null;
+	            }
+
 	            var logout = _react2.default.createElement(
-	                'div',
+	                'span',
 	                null,
 	                _react2.default.createElement(
 	                    'ul',
 	                    { className: 'nav navbar-nav' },
+	                    _react2.default.createElement(
+	                        'li',
+	                        null,
+	                        _react2.default.createElement(
+	                            'a',
+	                            { id: 'user', onClick: this.cH, href: '#' },
+	                            username
+	                        )
+	                    ),
 	                    _react2.default.createElement(
 	                        'li',
 	                        { className: 'dropdown' },
@@ -4886,6 +4898,7 @@
 	                                    ),
 	                                    _react2.default.createElement('input', { type: 'text', className: 'form-control', id: 'caption', required: true })
 	                                ),
+	                                _react2.default.createElement('br', null),
 	                                _react2.default.createElement(
 	                                    'button',
 	                                    { type: 'submit', className: 'btn btn-primary btn-block' },
@@ -4906,16 +4919,6 @@
 	                            { id: 'all', onClick: this.cH, href: '#' },
 	                            _react2.default.createElement('span', { className: 'glyphicon glyphicon-th' }),
 	                            ' All Pics'
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        _react2.default.createElement(
-	                            'a',
-	                            { id: 'user', onClick: this.cH, href: '#' },
-	                            _react2.default.createElement('span', { className: 'glyphicon glyphicon-user' }),
-	                            ' My Pics'
 	                        )
 	                    ),
 	                    _react2.default.createElement(
@@ -4989,7 +4992,7 @@
 	                        { className: 'navbar-header' },
 	                        _react2.default.createElement(
 	                            'button',
-	                            { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#bs-example-navbar-collapse-1', 'aria-expanded': 'false' },
+	                            { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#collapse', 'aria-expanded': 'false' },
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'sr-only' },
@@ -5003,10 +5006,15 @@
 	                            'a',
 	                            { id: 'start', onClick: this.cH, className: 'navbar-brand', href: '#' },
 	                            this.state.appName
-	                        )
+	                        ),
+	                        img
+	                    ),
+	                    _react2.default.createElement(
+	                        'span',
+	                        { className: 'collapse navbar-collapse', id: 'collapse' },
+	                        navs
 	                    )
-	                ),
-	                navs
+	                )
 	            );
 	        }
 	    }]);
@@ -5568,47 +5576,7 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    null,
-	                    _react2.default.createElement('img', { src: icon }),
-	                    _react2.default.createElement(
-	                        'bold',
-	                        null,
-	                        ' @',
-	                        email
-	                    )
-	                ),
-	                _react2.default.createElement('br', null),
-	                _react2.default.createElement(
-	                    'div',
-	                    null,
-	                    _react2.default.createElement(
-	                        'form',
-	                        { onSubmit: this.submit },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'form-group' },
-	                            _react2.default.createElement(
-	                                'label',
-	                                { htmlFor: 'image' },
-	                                'Image URL:'
-	                            ),
-	                            _react2.default.createElement('input', { type: 'url', className: 'form-control', id: 'image', required: true })
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'form-group' },
-	                            _react2.default.createElement(
-	                                'label',
-	                                { htmlFor: 'caption' },
-	                                'Caption:'
-	                            ),
-	                            _react2.default.createElement('input', { type: 'text', className: 'form-control', id: 'caption', required: true })
-	                        ),
-	                        _react2.default.createElement(
-	                            'button',
-	                            { type: 'submit', className: 'btn btn-primary' },
-	                            'Submit'
-	                        )
-	                    )
+	                    'Place Images Here!'
 	                )
 	            );
 	        }

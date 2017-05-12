@@ -99,23 +99,7 @@ export default class User extends React.Component {
         return (
             <div className="jumbotron" >
                 <div>
-                    <img src={icon} />
-                    <bold> @{email}</bold>
-                </div>
-                <br />
-                <div>
-                    <form onSubmit={this.submit} >
-                        
-                        <div className="form-group">
-                            <label htmlFor="image">Image URL:</label>
-                            <input type="url" className="form-control" id="image" required />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="caption">Caption:</label>
-                            <input type="text" className="form-control" id="caption" required />
-                        </div>
-                        <button type="submit" className="btn btn-primary">Submit</button>
-                    </form>
+                    Place Images Here!
                 </div>
             </div>
         )
