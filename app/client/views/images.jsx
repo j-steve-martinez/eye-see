@@ -52,13 +52,13 @@ export default class Images extends React.Component {
                 <div key={key} className="image-element-class">
                     <img src={element.url} className="images" />
                     <div className='caption' >{element.caption}</div>
-                    <div>
+                    <div className='footer' >
                         {icon}
-                        {del}
                         <button className='btn btn-info btn-xs like' >
                             {like}
                             <span className="badge">{element.likes}</span>
                         </button>
+                        {del}
                     </div>
                 </div>
             );
