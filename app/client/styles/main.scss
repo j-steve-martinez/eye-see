@@ -11,6 +11,33 @@
 //     background: #99ccff;
 //     // background: #cceeff;
 // }
+.caption {
+    text-align: center;
+}
+
+.images {
+    max-width: 150px;
+    height: auto;
+    // padding: 3px;
+}
+
+.like {
+    float: right;
+}
+
+.del {
+    float: right;
+}
+
+
+.image-element-class {
+    padding: 3px;
+    margin: 5px;
+    background-color: lightcyan
+    // border-radius: 3%;
+    // border-style: solid;
+    // border-bottom: thick double #ff0000;
+}
 
 #twitter-icon {
     width: 50px;

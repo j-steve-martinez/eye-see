@@ -3,18 +3,11 @@ var mongoose = require('mongoose');
 
 // define the schema for our user model
 var images = mongoose.Schema({
-
-    /**
-     * userid
-     * image url
-     * caption
-     * likes
-     */
     userId: String,
     url: String,
     caption: String,
-    likes: Number
-
+    likes: Number,
+    icon: String
 });
 
 // create the model for images and expose it to our app

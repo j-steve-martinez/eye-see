@@ -6,6 +6,7 @@ export default class Header extends React.Component {
     constructor(props) {
         super(props);
         this.cH = this.cH.bind(this);
+        this.submit = this.submit.bind(this);
         this.state = { appName: 'Eye See' }
     }
     cH(e) {
@@ -14,9 +15,26 @@ export default class Header extends React.Component {
         e.preventDefault();
         this.props.router(e.target.id);
     }
+    submit(e) {
+        e.preventDefault();
+        console.log(e.target);
+        console.log(e.target.image.value);
+        console.log(e.target.caption.value);
+        var data, image, caption, username;
+        image = e.target.image.value;
+        if (e.target.caption.value === "") {
+            username = '@' + this.props.auth.email;
+            caption = 'An Image by: ' + username;
+        } else {
+            caption = e.target.caption.value;
+        }
+        data = { image: image, caption: caption, route: 'add' }
+        this.props.ajax(data);
+
+    }
     render() {
-        console.log('header props');
-        console.log(this.props);
+        // console.log('header props');
+        // console.log(this.props);
 
         if (this.props.auth._id !== false) {
             var username = '@' + this.props.auth.email;
@@ -30,7 +48,7 @@ export default class Header extends React.Component {
         var logout = (
             <span>
                 <ul className="nav navbar-nav">
-                    
+
                     <li><a id="user" onClick={this.cH} href="#">{username}</a></li>
                     <li className="dropdown">
                         <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add Image <span className="caret"></span></a>
@@ -43,7 +61,7 @@ export default class Header extends React.Component {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="caption">Caption:</label>
-                                    <input type="text" className="form-control" id="caption" required />
+                                    <input type="text" className="form-control" id="caption" />
                                 </div>
                                 <br />
                                 <button type="submit" className="btn btn-primary btn-block">Submit</button>

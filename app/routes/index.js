@@ -123,6 +123,12 @@ module.exports = function (app, passport, primus) {
 			failureRedirect: '/'
 		}));
 
+	app.route('/api/images')
+		.get(clickHandler.all)
+		.put()
+		.post(isLoggedIn, clickHandler.add)
+		.delete()
+
 	// app.get('/unlink/local', isLoggedIn, function (req, res) {
 	// 	var user = req.user;
 	// 	user.local.email = undefined;

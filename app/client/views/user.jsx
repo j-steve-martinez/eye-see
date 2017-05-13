@@ -1,10 +1,11 @@
 import React from 'react';
+import Images from './images.jsx'
 
 export default class User extends React.Component {
     constructor(props) {
         super(props);
         this.onClick = this.onClick.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        // this.onSubmit = this.onSubmit.bind(this);
         this.onConfirm = this.onConfirm.bind(this);
         var data = {
             isConfirm: false
@@ -32,13 +33,6 @@ export default class User extends React.Component {
         window.scrollTo(0, findPos(document.getElementById("confirm")));
         this.setState(data);
     }
-    onSubmit(e) {
-        e.preventDefault();
-        console.log('onSubmit');
-        console.log(e.target.id);
-        // this.props.ajax(data);
-
-    }
     onConfirm(e) {
         e.preventDefault();
         // console.log('onConfirm');
@@ -46,9 +40,9 @@ export default class User extends React.Component {
         this.setState({ isConfirm: false });
     }
     render() {
-        console.log('User');
-        console.log(this.props);
-        console.log(this.state);
+        // console.log('User');
+        // console.log(this.props);
+        // console.log(this.state);
         var books, booksHtml, borrowed, borrowedHtml, requests, requestsHtml, name, email, city, state, icon;
 
         /**
@@ -73,33 +67,16 @@ export default class User extends React.Component {
         } else {
             confirm = null;
         }
-        var location, city, state;
-        location = null;
-        city = this.props.auth.city;
-        state = this.props.auth.state;
-        this.props.auth.name ? name = this.props.auth.name : name = null;
-        this.props.auth.email ? email = this.props.auth.email : email = null;
-
-        if (city && state) {
-            location = city + ', ' + state;
-        } else if (city) {
-            location = city;
-        } else if (state) {
-            location = state;
-        }
-        if (this.props.auth.icon !== undefined) {
-            console.log(this.props.auth.icon);
-            icon = this.props.auth.icon;
+  
+        if (this.props.images.length === 0) {
+            var images = <div>No Images to Show</div>;
         } else {
-            /**
-             * TODO: Change this later for a dummy user icon
-             */
-            icon = null;
+            var images = <Images images={this.props.images} auth={this.props.auth} type='user' />
         }
         return (
-            <div className="jumbotron" >
+            <div className="" >
                 <div>
-                    Place Images Here!
+                    {images}
                 </div>
             </div>
         )

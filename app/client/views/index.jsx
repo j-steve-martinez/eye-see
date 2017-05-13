@@ -18,7 +18,7 @@ export default class Main extends React.Component {
         this.ajax = this.ajax.bind(this);
         this.parseAuth = this.parseAuth.bind(this);
         var auth = { _id: false, error: '' };
-        this.state = { auth: auth };
+        this.state = { auth: auth, images: [] };
     }
     router(route) {
         // console.log('main router');
@@ -32,25 +32,29 @@ export default class Main extends React.Component {
         }
     }
     ajax(data) {
-        // console.log('main ajax');
-        // console.log(data);
+        console.log('main ajax');
+        console.log(data);
         /**
          * Ajax to the server
          */
-        var auth, book, books, url, URL, method, primus, contentType, route, reroute, header = {}, state = {};
+        var auth, url, URL, method, primus, contentType, route, reroute, header = {}, state = {};
         if (data.primus) {
             state.primus = data.primus;
             delete data.primus;
         }
 
-
-        // books = this.state.books
         route = data.route;
 
         switch (route) {
             case 'all':
                 // console.log('route: signup');
                 url = '/signup'
+                header.method = 'POST';
+                header.url = url;
+                break;
+            case 'add':
+                console.log('route: add');
+                url = '/api/images'
                 header.method = 'POST';
                 header.url = url;
                 break;
@@ -78,22 +82,27 @@ export default class Main extends React.Component {
         header.contentType = "application/json";
         header.dataType = 'json'
         header.data = JSON.stringify(data);
-        // console.log('ajax header');
-        // console.log(data);
-        // console.log(header);
+        console.log('ajax header');
+        console.log(data);
+        console.log(header);
 
         /**
          * Get data from server
          */
         $.ajax(header)
             .then(results => {
-                // console.log('AJAX .then');
-                // console.log(results);
+                console.log('AJAX .then');
+                console.log(results);
                 switch (route) {
                     case 'all':
                         // console.log('signup .then');
                         reroute = 'user';
                         auth = this.parseAuth(results.user);
+                        break;
+                    case 'add':
+                        // console.log('signup .then');
+                        // reroute = 'user';
+                        // auth = this.parseAuth(results.user);
                         break;
                     case 'update':
                         // console.log('update .then');
@@ -133,8 +142,8 @@ export default class Main extends React.Component {
             });
     }
     parseAuth(data) {
-        console.log('parseAuth');
-        console.log(data);
+        // console.log('parseAuth');
+        // console.log(data);
         if (data._id === false) {
             return data;
         } else {
@@ -168,7 +177,7 @@ export default class Main extends React.Component {
             data[type].state ? state = data[type].state : state = '';
             data[type].email ? email = data[type].email : email = '';
             data[type].email ? icon = data[type].icon : icon = '';
-            
+
             data.error ? error = data.error : error = null;
 
             obj = {
@@ -198,6 +207,18 @@ export default class Main extends React.Component {
         //         // console.log('primus got json');
         //     }
         // });
+        var apiUrl = window.location.origin + '/api/images';
+        $.ajax({
+            url: apiUrl,
+            method: 'GET'
+        }).then(data => {
+            console.log('comp did mount ajax.then');
+            console.log(data);
+            // var route, auth = this.parseAuth(data.user);
+            // console.log(auth._id);
+            // auth._id ? route = 'user' : route = 'start'
+            this.setState({ images: data.images })
+        })
     }
     componentWillMount() {
         // console.log('Main componentWillMount');
@@ -215,8 +236,8 @@ export default class Main extends React.Component {
         })
     }
     render() {
-        // console.log('Main render');
-        // console.log(this.state);
+        console.log('Main render');
+        console.log(this.state);
         var page, error, route;
         route = this.state.route;
         error = this.state.auth.error;
@@ -237,7 +258,7 @@ export default class Main extends React.Component {
                 page = <Signup ajax={this.ajax} auth={this.state.auth} />
                 break;
             case 'user':
-                page = <User ajax={this.ajax} auth={this.state.auth} />
+                page = <User ajax={this.ajax} auth={this.state.auth} images={this.state.images} />
                 break;
             case 'about':
                 page = <About />
@@ -249,7 +270,7 @@ export default class Main extends React.Component {
         }
         return (
             <div className="container" >
-                <Header router={this.router} auth={this.state.auth} />
+                <Header router={this.router} ajax={this.ajax} auth={this.state.auth} />
                 {page}
             </div>
         )

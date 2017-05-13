@@ -1,3 +1,21 @@
+.caption {
+  text-align: center; }
+
+.images {
+  max-width: 150px;
+  height: auto; }
+
+.like {
+  float: right; }
+
+.del {
+  float: right; }
+
+.image-element-class {
+  padding: 3px;
+  margin: 5px;
+  background-color: lightcyan; }
+
 #twitter-icon {
   width: 50px;
   height: 50px; }
