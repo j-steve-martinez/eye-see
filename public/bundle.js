@@ -193,8 +193,8 @@
 	             * Get data from server
 	             */
 	            $.ajax(header).then(function (results) {
-	                // console.log('AJAX .then');
-	                // console.log(results);
+	                console.log('AJAX .then');
+	                console.log(results);
 	                switch (route) {
 	                    case 'all':
 	                        // console.log('signup .then');
@@ -202,7 +202,9 @@
 	                        auth = _this2.parseAuth(results.user);
 	                        break;
 	                    case 'add':
-	                        // console.log('signup .then');
+	                        console.log('signup .then');
+	                        state.images = _this2.state.images;
+
 	                        // reroute = 'user';
 	                        // auth = this.parseAuth(results.user);
 	                        break;
@@ -13934,9 +13936,9 @@
 	        value: function render() {
 	            var _this2 = this;
 
-	            // console.log('User');
-	            // console.log(this.props);
-	            // console.log(this.state);
+	            console.log('User');
+	            console.log(this.props);
+	            console.log(this.state);
 	            var books, booksHtml, borrowed, borrowedHtml, requests, requestsHtml, name, email, city, state, icon;
 
 	            /**
@@ -13996,6 +13998,7 @@
 	            } else {
 	                var images = _react2.default.createElement(_images2.default, { images: images, auth: this.props.auth, type: 'user' });
 	            }
+
 	            return _react2.default.createElement(
 	                'div',
 	                { className: '' },
@@ -14089,8 +14092,8 @@
 	    }, {
 	        key: 'componentWillReceiveProps',
 	        value: function componentWillReceiveProps(nextProps) {
-	            console.log('componentWillReceiveProps');
-	            console.log(nextProps);
+	            // console.log('componentWillReceiveProps');
+	            // console.log(nextProps);
 	            this.setState(nextProps);
 	        }
 	    }, {

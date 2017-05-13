@@ -33,8 +33,8 @@ export default class Images extends React.Component {
         console.log(e.target);
     }
     componentWillReceiveProps(nextProps){
-        console.log('componentWillReceiveProps');
-        console.log(nextProps);
+        // console.log('componentWillReceiveProps');
+        // console.log(nextProps);
         this.setState(nextProps)
     }
     render() {

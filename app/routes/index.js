@@ -125,9 +125,9 @@ module.exports = function (app, passport, primus) {
 
 	app.route('/api/images')
 		.get(clickHandler.all)
-		.put()
+		.put(clickHandler.like)
 		.post(isLoggedIn, clickHandler.add)
-		.delete()
+		.delete(isLoggedIn, clickHandler.delete)
 
 	// app.get('/unlink/local', isLoggedIn, function (req, res) {
 	// 	var user = req.user;

@@ -24,26 +24,36 @@ function ClickHandler() {
 					if (err) { throw err; }
 					console.log('img saved');
 					console.log(data);
-					res.json({ user: data });
+					res.json({ image: data });
 				});
 			} else {
-				res.json({message: 'Image already exists!'});
+				res.json({ message: 'Image already exists!' });
 			}
 		})
 	}
 
-	this.all = (req, res)=>{
+	this.all = (req, res) => {
 		console.log('clickHandler get all');
 		console.log(req.body);
 		// var image = new Image();
 		// var images = [image]
 		// res.json({images: images});
-		Image.find((err, images)=>{
+		Image.find((err, images) => {
 			if (err) { throw err; }
 			console.log('clickHandler all');
 			console.log(images);
-			res.json({images});
+			res.json({ images });
 		})
+	}
+
+	this.like = (req, res) => {
+		console.log('like');
+		console.log(req.body);
+	}
+
+	this.delete = (req, res) => {
+		console.log('delete');
+		console.log(req.body);
 	}
 
 	this.update = (req, res) => {

@@ -92,8 +92,8 @@ export default class Main extends React.Component {
          */
         $.ajax(header)
             .then(results => {
-                // console.log('AJAX .then');
-                // console.log(results);
+                console.log('AJAX .then');
+                console.log(results);
                 switch (route) {
                     case 'all':
                         // console.log('signup .then');
@@ -101,7 +101,9 @@ export default class Main extends React.Component {
                         auth = this.parseAuth(results.user);
                         break;
                     case 'add':
-                        // console.log('signup .then');
+                        console.log('signup .then');
+                        state.images = this.state.images;
+                    
                         // reroute = 'user';
                         // auth = this.parseAuth(results.user);
                         break;
