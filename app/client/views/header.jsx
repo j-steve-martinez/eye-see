@@ -78,7 +78,7 @@ export default class Header extends React.Component {
         );
         var login = (
             <ul className="nav navbar-nav navbar-right" >
-                {/*<li><a id="signup" onClick={this.cH} href="#"><span className="glyphicon glyphicon-user"></span> Sign Up</a></li>*/}
+                <li><a id="all" onClick={this.cH} href="#"><span className="glyphicon glyphicon-th"></span> All Pics</a></li>
                 <li><a id="login" onClick={this.cH} href="#"><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
                 <li><a id="about" onClick={this.cH} href="#"><span className="glyphicon glyphicon-question-sign"></span> About</a></li>
             </ul>

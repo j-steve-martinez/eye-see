@@ -4,12 +4,13 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 import About from './about.jsx';
-import Config from './config.jsx'
+// import Config from './config.jsx'
 import Header from './header.jsx';
 import Login from './login.jsx';
-import Signup from './signup.jsx';
+// import Signup from './signup.jsx';
 import Start from './start.jsx';
 import User from './user.jsx';
+import All from './all.jsx';
 
 export default class Main extends React.Component {
     constructor(props) {
@@ -32,8 +33,8 @@ export default class Main extends React.Component {
         }
     }
     ajax(data) {
-        console.log('main ajax');
-        console.log(data);
+        // console.log('main ajax');
+        // console.log(data);
         /**
          * Ajax to the server
          */
@@ -82,17 +83,17 @@ export default class Main extends React.Component {
         header.contentType = "application/json";
         header.dataType = 'json'
         header.data = JSON.stringify(data);
-        console.log('ajax header');
-        console.log(data);
-        console.log(header);
+        // console.log('ajax header');
+        // console.log(data);
+        // console.log(header);
 
         /**
          * Get data from server
          */
         $.ajax(header)
             .then(results => {
-                console.log('AJAX .then');
-                console.log(results);
+                // console.log('AJAX .then');
+                // console.log(results);
                 switch (route) {
                     case 'all':
                         // console.log('signup .then');
@@ -212,8 +213,8 @@ export default class Main extends React.Component {
             url: apiUrl,
             method: 'GET'
         }).then(data => {
-            console.log('comp did mount ajax.then');
-            console.log(data);
+            // console.log('comp did mount ajax.then');
+            // console.log(data);
             // var route, auth = this.parseAuth(data.user);
             // console.log(auth._id);
             // auth._id ? route = 'user' : route = 'start'
@@ -236,8 +237,8 @@ export default class Main extends React.Component {
         })
     }
     render() {
-        console.log('Main render');
-        console.log(this.state);
+        // console.log('Main render');
+        // console.log(this.state);
         var page, error, route;
         route = this.state.route;
         error = this.state.auth.error;
@@ -256,6 +257,9 @@ export default class Main extends React.Component {
                 break;
             case 'signup':
                 page = <Signup ajax={this.ajax} auth={this.state.auth} />
+                break;
+            case 'all':
+                page = <All ajax={this.ajax} auth={this.state.auth} images={this.state.images} />
                 break;
             case 'user':
                 page = <User ajax={this.ajax} auth={this.state.auth} images={this.state.images} />

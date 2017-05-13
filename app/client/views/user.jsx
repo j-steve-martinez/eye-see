@@ -67,11 +67,21 @@ export default class User extends React.Component {
         } else {
             confirm = null;
         }
-  
+
+        /**
+         * Filter out images not user
+         */
+        var images = this.props.images.filter((item)=>{
+            return item.userId === this.props.auth._id;
+        });
+
+        /**
+         * Show blank page if no images
+         */
         if (this.props.images.length === 0) {
-            var images = <div>No Images to Show</div>;
+            var images = null;
         } else {
-            var images = <Images images={this.props.images} auth={this.props.auth} type='user' />
+            var images = <Images images={images} auth={this.props.auth} type='user' />
         }
         return (
             <div className="" >

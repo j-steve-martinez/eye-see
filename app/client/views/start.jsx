@@ -15,7 +15,7 @@ export default class Start extends React.Component {
             name = name;
         } else {
             welcome = "Welcome";
-            name = "Please Login or Register.";
+            name = "Please Login to add what you see.";
         }
         console.log(welcome);
         return (
