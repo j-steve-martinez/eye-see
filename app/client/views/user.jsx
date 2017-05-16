@@ -81,7 +81,7 @@ export default class User extends React.Component {
         if (this.props.images.length === 0) {
             var images = null;
         } else {
-            var images = <Images images={images} auth={this.props.auth} type='user' />
+            var images = <Images images={images} ajax={this.props.ajax} auth={this.props.auth} type='user' />
         }
 
         return (

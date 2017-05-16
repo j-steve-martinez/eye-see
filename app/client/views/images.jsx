@@ -10,7 +10,7 @@ export default class Images extends React.Component {
         this.filter = this.filter.bind(this);
         this.like = this.like.bind(this);
         this.del = this.del.bind(this);
-        this.state = { images: this.props.images};
+        this.state = { images: this.props.images };
     }
     filter(e) {
         e.preventDefault();
@@ -25,14 +25,17 @@ export default class Images extends React.Component {
     like(e) {
         e.preventDefault();
         console.log('like');
+        console.log(this.props);
         console.log(e.target.id);
+        var data = { route: 'like', imageId: e.target.id , type: this.props.type};
+        this.props.ajax(data);
     }
     del(e) {
         e.preventDefault();
         console.log('del');
         console.log(e.target);
     }
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
         // console.log('componentWillReceiveProps');
         // console.log(nextProps);
         this.setState(nextProps)
@@ -70,14 +73,14 @@ export default class Images extends React.Component {
             }
 
             /**
-             * deleck the likes
+             * check the likes
              */
             if (element.likes > 0) {
-                var like = <span className="glyphicon glyphicon-star"></span>
+                var like = <span id={element._id} className="glyphicon glyphicon-star"></span>
             } else {
-                var like = <span className="glyphicon glyphicon-star-empty"></span>
+                var like = <span id={element._id} className="glyphicon glyphicon-star-empty"></span>
             }
-
+            // console.log(element._id);
             return (
                 <div key={key} className="image-element-class">
                     <img src={element.url} className="images" />
@@ -86,7 +89,7 @@ export default class Images extends React.Component {
                         {icon}
                         <button id={element._id} onClick={this.like} className='btn btn-info btn-xs like' >
                             {like}
-                            <span className="badge">{element.likes}</span>
+                            <span id={element._id} className="badge">{element.likes}</span>
                         </button>
                         {del}
                     </div>

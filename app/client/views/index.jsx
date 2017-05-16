@@ -59,6 +59,12 @@ export default class Main extends React.Component {
                 header.method = 'POST';
                 header.url = url;
                 break;
+            case 'like':
+                console.log('route: like');
+                url = '/api/images'
+                header.method = 'PUT';
+                header.url = url;
+                break;
             case 'update':
                 // console.log('route: update');
                 url = '/update'
@@ -101,10 +107,26 @@ export default class Main extends React.Component {
                         auth = this.parseAuth(results.user);
                         break;
                     case 'add':
-                        console.log('signup .then');
+                        console.log('add .then');
                         state.images = this.state.images;
-                    
                         // reroute = 'user';
+                        // auth = this.parseAuth(results.user);
+                        auth = this.state.auth;
+                        break;
+                    case 'like':
+                        console.log('like .then');
+                        console.log(results.image._id);
+                        reroute = results.type;
+                        auth = this.state.auth;
+                        state.images = this.state.images;
+                        state.images.forEach(item => {
+                            if (item._id === results.image._id) {
+                                // console.log(item);
+                                item.likes = results.image.likes;
+                                item.users = results.image.users;
+                            }
+                        });
+
                         // auth = this.parseAuth(results.user);
                         break;
                     case 'update':

@@ -125,7 +125,7 @@ module.exports = function (app, passport, primus) {
 
 	app.route('/api/images')
 		.get(clickHandler.all)
-		.put(clickHandler.like)
+		.put(isLoggedIn, clickHandler.like)
 		.post(isLoggedIn, clickHandler.add)
 		.delete(isLoggedIn, clickHandler.delete)
 

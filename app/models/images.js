@@ -7,7 +7,8 @@ var images = mongoose.Schema({
     url: String,
     caption: String,
     likes: Number,
-    icon: String
+    icon: String,
+    users: [String]
 });
 
 // create the model for images and expose it to our app

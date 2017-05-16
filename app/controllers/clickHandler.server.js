@@ -5,15 +5,15 @@ var Image = require('../models/images.js');
 
 function ClickHandler() {
 	this.add = (req, res) => {
-		console.log('clickHandler add');
-		console.log(req.body);
-		console.log(req.user);
+		// console.log('clickHandler add');
+		// console.log(req.body);
+		// console.log(req.user);
 		Image.findOne({ _id: req.user._id, image: req.body.image }, (err, image) => {
 			if (err) { throw err; }
-			console.log('Image.findOne result');
-			console.log(image);
+			// console.log('Image.findOne result');
+			// console.log(image);
 			if (image === null) {
-				console.log('adding image');
+				// console.log('adding image');
 				var img = new Image();
 				img.userId = req.user._id;
 				img.url = req.body.image;
@@ -22,8 +22,8 @@ function ClickHandler() {
 				img.icon = req.user.twitter.icon;
 				img.save((err, data) => {
 					if (err) { throw err; }
-					console.log('img saved');
-					console.log(data);
+					// console.log('img saved');
+					// console.log(data);
 					res.json({ image: data });
 				});
 			} else {
@@ -33,22 +33,61 @@ function ClickHandler() {
 	}
 
 	this.all = (req, res) => {
-		console.log('clickHandler get all');
-		console.log(req.body);
-		// var image = new Image();
-		// var images = [image]
-		// res.json({images: images});
+		// console.log('clickHandler get all');
+		// console.log(req.body);
 		Image.find((err, images) => {
 			if (err) { throw err; }
-			console.log('clickHandler all');
-			console.log(images);
+			// console.log('clickHandler all');
+			// console.log(images);
 			res.json({ images });
 		})
 	}
 
 	this.like = (req, res) => {
-		console.log('like');
-		console.log(req.body);
+		// console.log('like');
+		// console.log(req.body);
+		// console.log(req.user);
+		Image.findOne({ _id: req.body.imageId }, (err, image) => {
+			if (err) { throw err; }
+			// console.log('image');
+			// console.log(image);
+			if (image === null) {
+				res.end()
+			} else {
+				if (image.users.indexOf(req.user._id) === -1) {
+					/**
+					 * User not found so add and update count
+					 */
+					image.users.push(req.user._id);
+					image.likes = image.users.length;
+					image.save((err, image) => {
+						if (err) { throw err; }
+						// console.log('user likes increment');
+						// console.log(image);
+						res.json({ image, type: req.body.type });
+					});
+				} else {
+					/**
+					 * User already liked so remove and update count
+					 */
+					var filtered = image.users.filter(item => {
+						if (item.toString() !== req.user._id.toString()) {
+							return item;
+						}
+					});
+					image.users = filtered;
+					image.likes = image.users.length;
+					// console.log(image);
+					image.save((err, image) => {
+						if (err) { throw err; }
+						// console.log('user likes decrement');
+						// console.log(image);
+						res.json({ image, type: req.body.type });
+					});
+				}
+			}
+			// res.end();
+		});
 	}
 
 	this.delete = (req, res) => {
