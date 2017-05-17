@@ -23,7 +23,6 @@ module.exports = function (app, passport, primus) {
 	}
 
 	var clickHandler = new ClickHandler();
-	// clickHandler.addDefault();
 
 	app.route('/')
 		.get(function (req, res) {
@@ -128,42 +127,6 @@ module.exports = function (app, passport, primus) {
 		.put(isLoggedIn, clickHandler.like)
 		.post(isLoggedIn, clickHandler.add)
 		.delete(isLoggedIn, clickHandler.delete)
-
-	// app.get('/unlink/local', isLoggedIn, function (req, res) {
-	// 	var user = req.user;
-	// 	user.local.email = undefined;
-	// 	user.local.password = undefined;
-	// 	user.save(function (err) {
-	// 		res.redirect('/');
-	// 	});
-	// });
-
-	// app.get('/unlink/facebook', isLoggedIn, function (req, res) {
-	// 	var user = req.user;
-	// 	user.facebook.token = undefined;
-	// 	user.save(function (err) {
-	// 		res.redirect('/');
-	// 	});
-	// });
-
-
-	// app.get('/unlink/twitter', isLoggedIn, function (req, res) {
-	// 	var user = req.user;
-	// 	user.twitter.token = undefined;
-	// 	user.save(function (err) {
-	// 		res.redirect('/');
-	// 	});
-	// });
-
-
-	// app.get('/unlink/google', isLoggedIn, function (req, res) {
-	// 	var user = req.user;
-	// 	user.google.token = undefined;
-	// 	user.save(function (err) {
-	// 		res.redirect('/');
-	// 	});
-	// });
-
 
 	primus.on('connection', function connection(spark) {
 		// console.log('new connection ' + spark.id);

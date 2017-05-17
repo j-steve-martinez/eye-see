@@ -167,6 +167,12 @@
 	                    header.method = 'PUT';
 	                    header.url = url;
 	                    break;
+	                case 'delete':
+	                    console.log('route: delete');
+	                    url = '/api/images';
+	                    header.method = 'DELETE';
+	                    header.url = url;
+	                    break;
 	                case 'update':
 	                    // console.log('route: update');
 	                    url = '/update';
@@ -210,8 +216,18 @@
 	                    case 'add':
 	                        console.log('add .then');
 	                        state.images = _this2.state.images;
-	                        // reroute = 'user';
-	                        // auth = this.parseAuth(results.user);
+	                        if (results.image) {
+	                            state.images.push(results.image);
+	                        }
+	                        reroute = 'user';
+	                        auth = _this2.state.auth;
+	                        break;
+	                    case 'delete':
+	                        console.log('delete .then');
+	                        state.images = _this2.state.images.filter(function (item) {
+	                            return item._id.toString() !== results.imageId.toString();
+	                        });
+	                        reroute = 'user';
 	                        auth = _this2.state.auth;
 	                        break;
 	                    case 'like':
@@ -227,8 +243,6 @@
 	                                item.users = results.image.users;
 	                            }
 	                        });
-
-	                        // auth = this.parseAuth(results.user);
 	                        break;
 	                    case 'update':
 	                        // console.log('update .then');
@@ -4679,6 +4693,11 @@
 	            } else {
 	                caption = e.target.caption.value;
 	            }
+
+	            /**
+	             * Close the dropdown and clear the fields
+	             */
+	            $('.dropdown-toggle').prop('aria-haspopup', false);
 	            data = { image: image, caption: caption, route: 'add' };
 	            this.props.ajax(data);
 	        }
@@ -5361,7 +5380,9 @@
 	        value: function del(e) {
 	            e.preventDefault();
 	            console.log('del');
-	            console.log(e.target);
+	            console.log(e.target.id);
+	            var data = { route: 'delete', imageId: e.target.id };
+	            this.props.ajax(data);
 	        }
 	    }, {
 	        key: 'componentWillReceiveProps',
@@ -5400,7 +5421,7 @@
 	                    var del = _react2.default.createElement(
 	                        'button',
 	                        { id: element._id, onClick: _this2.del, className: 'btn btn-danger btn-xs del' },
-	                        _react2.default.createElement('span', { className: 'glyphicon glyphicon-remove' })
+	                        _react2.default.createElement('span', { id: element._id, className: 'glyphicon glyphicon-remove' })
 	                    );
 	                } else {
 	                    var del = null;

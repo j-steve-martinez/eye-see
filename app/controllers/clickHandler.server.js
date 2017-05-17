@@ -5,10 +5,11 @@ var Image = require('../models/images.js');
 
 function ClickHandler() {
 	this.add = (req, res) => {
-		// console.log('clickHandler add');
-		// console.log(req.body);
-		// console.log(req.user);
-		Image.findOne({ _id: req.user._id, image: req.body.image }, (err, image) => {
+		// console.log('clickHandler add boy');
+		// console.log(req.body.image);
+		// console.log('req.user');
+		// console.log(req.user._id);
+		Image.findOne({ userId: req.user._id, url: req.body.image }, (err, image) => {
 			if (err) { throw err; }
 			// console.log('Image.findOne result');
 			// console.log(image);
@@ -20,14 +21,14 @@ function ClickHandler() {
 				img.caption = req.body.caption;
 				img.likes = 0;
 				img.icon = req.user.twitter.icon;
-				img.save((err, data) => {
+				img.save((err, image) => {
 					if (err) { throw err; }
 					// console.log('img saved');
-					// console.log(data);
-					res.json({ image: data });
+					// console.log(image);
+					res.json({route: 'add', image: image });
 				});
 			} else {
-				res.json({ message: 'Image already exists!' });
+				res.json({route: 'add'});
 			}
 		})
 	}
@@ -93,6 +94,16 @@ function ClickHandler() {
 	this.delete = (req, res) => {
 		console.log('delete');
 		console.log(req.body);
+		Image.findByIdAndRemove(req.body.imageId, (err, image) => {
+			if (err) { throw err; }
+			console.log('deleted image');
+			console.log(image);
+			if (image === null) {
+				res.json({ route: 'delete', imageId: '' })
+			} else {
+				res.json({ route: req.body.route, imageId: image._id });
+			}
+		});
 	}
 
 	this.update = (req, res) => {

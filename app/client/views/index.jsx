@@ -65,6 +65,12 @@ export default class Main extends React.Component {
                 header.method = 'PUT';
                 header.url = url;
                 break;
+            case 'delete':
+                console.log('route: delete');
+                url = '/api/images'
+                header.method = 'DELETE';
+                header.url = url;
+                break;
             case 'update':
                 // console.log('route: update');
                 url = '/update'
@@ -109,8 +115,18 @@ export default class Main extends React.Component {
                     case 'add':
                         console.log('add .then');
                         state.images = this.state.images;
-                        // reroute = 'user';
-                        // auth = this.parseAuth(results.user);
+                        if (results.image) {
+                            state.images.push(results.image);
+                        }
+                        reroute = 'user';
+                        auth = this.state.auth;
+                        break;
+                    case 'delete':
+                        console.log('delete .then');
+                        state.images = this.state.images.filter(item => {
+                            return item._id.toString() !== results.imageId.toString();
+                        });
+                        reroute = 'user';
                         auth = this.state.auth;
                         break;
                     case 'like':
@@ -126,8 +142,6 @@ export default class Main extends React.Component {
                                 item.users = results.image.users;
                             }
                         });
-
-                        // auth = this.parseAuth(results.user);
                         break;
                     case 'update':
                         // console.log('update .then');

@@ -28,6 +28,11 @@ export default class Header extends React.Component {
         } else {
             caption = e.target.caption.value;
         }
+
+        /**
+         * Close the dropdown and clear the fields
+         */
+        $('.dropdown-toggle').prop('aria-haspopup', false);
         data = { image: image, caption: caption, route: 'add' }
         this.props.ajax(data);
 

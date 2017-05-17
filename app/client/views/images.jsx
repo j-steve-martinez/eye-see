@@ -27,13 +27,15 @@ export default class Images extends React.Component {
         console.log('like');
         console.log(this.props);
         console.log(e.target.id);
-        var data = { route: 'like', imageId: e.target.id , type: this.props.type};
+        var data = { route: 'like', imageId: e.target.id, type: this.props.type };
         this.props.ajax(data);
     }
     del(e) {
         e.preventDefault();
         console.log('del');
-        console.log(e.target);
+        console.log(e.target.id);
+        var data = { route: 'delete', imageId: e.target.id};
+        this.props.ajax(data);
     }
     componentWillReceiveProps(nextProps) {
         // console.log('componentWillReceiveProps');
@@ -65,7 +67,7 @@ export default class Images extends React.Component {
             if (this.props.type === 'user' && this.props.auth._id !== false) {
                 var del = (
                     <button id={element._id} onClick={this.del} className='btn btn-danger btn-xs del'>
-                        <span className='glyphicon glyphicon-remove'></span>
+                        <span id={element._id} className='glyphicon glyphicon-remove'></span>
                     </button>
                 )
             } else {
