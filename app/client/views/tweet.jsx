@@ -8,7 +8,7 @@ export default class Tweet extends React.Component {
         var url = window.location.href;
         var elem = document.getElementById('twit-share');
         var data = {};
-        data.text = 'Hello World!';
+        data.text = 'Eye See: Come Share What You See!';
         data.size = 'large';
         twttr.widgets.createShareButton(url, elem, data);
     }

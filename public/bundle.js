@@ -474,7 +474,7 @@
 	      fccProjectName = 'Build a Pinterest Clone';
 	      fccProjectURL = "https://www.freecodecamp.com/challenges/build-a-pinterest-clone";
 	      appName = 'Eye See';
-	      appSum = 'A Place to Share What Your Eye Sees';
+	      appSum = 'A Place to Share What You See';
 	      herokuURL = "#";
 	      githubURL = "https://github.com/j-steve-martinez/eye-see.git";
 
@@ -5079,7 +5079,7 @@
 	                name = name;
 	            } else {
 	                welcome = "Welcome";
-	                name = "Please Login to add what you see.";
+	                name = "Please Login to share what you see.";
 	            }
 	            // console.log(welcome);
 	            return _react2.default.createElement(
@@ -5153,7 +5153,7 @@
 	            var url = window.location.href;
 	            var elem = document.getElementById('twit-share');
 	            var data = {};
-	            data.text = 'Hello World!';
+	            data.text = 'Eye See: Come Share What You See!';
 	            data.size = 'large';
 	            twttr.widgets.createShareButton(url, elem, data);
 	        }

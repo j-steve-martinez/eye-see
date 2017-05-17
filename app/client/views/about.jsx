@@ -6,7 +6,7 @@ export default class About extends React.Component {
     fccProjectName = 'Build a Pinterest Clone';
     fccProjectURL = "https://www.freecodecamp.com/challenges/build-a-pinterest-clone";
     appName = 'Eye See';
-    appSum = 'A Place to Share What Your Eye Sees'
+    appSum = 'A Place to Share What You See'
     herokuURL = "#";
     githubURL = "https://github.com/j-steve-martinez/eye-see.git";
 
