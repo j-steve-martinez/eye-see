@@ -2,18 +2,22 @@ import React from 'react';
 
 export default class About extends React.Component {
   render() {
-    var fccProjectURL, fccProjectName, appName, herokuURL, githubURL;
-    fccProjectName = 'React Login Template';
-    fccProjectURL = "#";
-    appName = 'React Login Template';
+    var fccProjectURL, fccProjectName, appName, appSum, herokuURL, githubURL;
+    fccProjectName = 'Build a Pinterest Clone';
+    fccProjectURL = "https://www.freecodecamp.com/challenges/build-a-pinterest-clone";
+    appName = 'Eye See';
+    appSum = 'A Place to Share What Your Eye Sees'
     herokuURL = "#";
-    githubURL = "https://github.com/j-steve-martinez/react-template";
+    githubURL = "https://github.com/j-steve-martinez/eye-see.git";
 
     return (
       <div className='jumbotron'>
         <div className='page-header'>
-          <h1>{appName}</h1>
+          <h1>
+          {appName} <small>{appSum}</small>
+          </h1>
         </div>
+        <h3>Work done for the freeCodeCamp project: <a href={fccProjectURL} >{fccProjectName}</a> </h3>
         <div id='about-body' >
           It is a full stack web application that uses:
           <ul>

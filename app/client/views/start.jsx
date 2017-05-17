@@ -17,7 +17,7 @@ export default class Start extends React.Component {
             welcome = "Welcome";
             name = "Please Login to add what you see.";
         }
-        console.log(welcome);
+        // console.log(welcome);
         return (
             <div className="jumbotron" >
                 <div className='page-header'>

@@ -19,21 +19,21 @@ export default class Images extends React.Component {
         var filtered = this.state.images.filter((item) => {
             return item.userId === e.target.id;
         });
-        console.log(filtered);
+        // console.log(filtered);
         this.setState({ images: filtered });
     }
     like(e) {
         e.preventDefault();
-        console.log('like');
-        console.log(this.props);
-        console.log(e.target.id);
+        // console.log('like');
+        // console.log(this.props);
+        // console.log(e.target.id);
         var data = { route: 'like', imageId: e.target.id, type: this.props.type };
         this.props.ajax(data);
     }
     del(e) {
         e.preventDefault();
-        console.log('del');
-        console.log(e.target.id);
+        // console.log('del');
+        // console.log(e.target.id);
         var data = { route: 'delete', imageId: e.target.id};
         this.props.ajax(data);
     }
@@ -43,9 +43,9 @@ export default class Images extends React.Component {
         this.setState(nextProps)
     }
     render() {
-        console.log('images props');
-        console.log(this.props);
-        console.log(this.state);
+        // console.log('images props');
+        // console.log(this.props);
+        // console.log(this.state);
 
         var masonryOptions = {
             transitionDuration: '0.8s'

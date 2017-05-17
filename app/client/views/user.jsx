@@ -40,9 +40,9 @@ export default class User extends React.Component {
         this.setState({ isConfirm: false });
     }
     render() {
-        console.log('User');
-        console.log(this.props);
-        console.log(this.state);
+        // console.log('User');
+        // console.log(this.props);
+        // console.log(this.state);
         var books, booksHtml, borrowed, borrowedHtml, requests, requestsHtml, name, email, city, state, icon;
 
         /**

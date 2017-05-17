@@ -54,19 +54,19 @@ export default class Main extends React.Component {
                 header.url = url;
                 break;
             case 'add':
-                console.log('route: add');
+                // console.log('route: add');
                 url = '/api/images'
                 header.method = 'POST';
                 header.url = url;
                 break;
             case 'like':
-                console.log('route: like');
+                // console.log('route: like');
                 url = '/api/images'
                 header.method = 'PUT';
                 header.url = url;
                 break;
             case 'delete':
-                console.log('route: delete');
+                // console.log('route: delete');
                 url = '/api/images'
                 header.method = 'DELETE';
                 header.url = url;
@@ -104,8 +104,8 @@ export default class Main extends React.Component {
          */
         $.ajax(header)
             .then(results => {
-                console.log('AJAX .then');
-                console.log(results);
+                // console.log('AJAX .then');
+                // console.log(results);
                 switch (route) {
                     case 'all':
                         // console.log('signup .then');
@@ -113,7 +113,7 @@ export default class Main extends React.Component {
                         auth = this.parseAuth(results.user);
                         break;
                     case 'add':
-                        console.log('add .then');
+                        // console.log('add .then');
                         state.images = this.state.images;
                         if (results.image) {
                             state.images.push(results.image);
@@ -122,7 +122,7 @@ export default class Main extends React.Component {
                         auth = this.state.auth;
                         break;
                     case 'delete':
-                        console.log('delete .then');
+                        // console.log('delete .then');
                         state.images = this.state.images.filter(item => {
                             return item._id.toString() !== results.imageId.toString();
                         });
@@ -130,8 +130,8 @@ export default class Main extends React.Component {
                         auth = this.state.auth;
                         break;
                     case 'like':
-                        console.log('like .then');
-                        console.log(results.image._id);
+                        // console.log('like .then');
+                        // console.log(results.image._id);
                         reroute = results.type;
                         auth = this.state.auth;
                         state.images = this.state.images;

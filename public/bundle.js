@@ -156,19 +156,19 @@
 	                    header.url = url;
 	                    break;
 	                case 'add':
-	                    console.log('route: add');
+	                    // console.log('route: add');
 	                    url = '/api/images';
 	                    header.method = 'POST';
 	                    header.url = url;
 	                    break;
 	                case 'like':
-	                    console.log('route: like');
+	                    // console.log('route: like');
 	                    url = '/api/images';
 	                    header.method = 'PUT';
 	                    header.url = url;
 	                    break;
 	                case 'delete':
-	                    console.log('route: delete');
+	                    // console.log('route: delete');
 	                    url = '/api/images';
 	                    header.method = 'DELETE';
 	                    header.url = url;
@@ -205,8 +205,8 @@
 	             * Get data from server
 	             */
 	            $.ajax(header).then(function (results) {
-	                console.log('AJAX .then');
-	                console.log(results);
+	                // console.log('AJAX .then');
+	                // console.log(results);
 	                switch (route) {
 	                    case 'all':
 	                        // console.log('signup .then');
@@ -214,7 +214,7 @@
 	                        auth = _this2.parseAuth(results.user);
 	                        break;
 	                    case 'add':
-	                        console.log('add .then');
+	                        // console.log('add .then');
 	                        state.images = _this2.state.images;
 	                        if (results.image) {
 	                            state.images.push(results.image);
@@ -223,7 +223,7 @@
 	                        auth = _this2.state.auth;
 	                        break;
 	                    case 'delete':
-	                        console.log('delete .then');
+	                        // console.log('delete .then');
 	                        state.images = _this2.state.images.filter(function (item) {
 	                            return item._id.toString() !== results.imageId.toString();
 	                        });
@@ -231,8 +231,8 @@
 	                        auth = _this2.state.auth;
 	                        break;
 	                    case 'like':
-	                        console.log('like .then');
-	                        console.log(results.image._id);
+	                        // console.log('like .then');
+	                        // console.log(results.image._id);
 	                        reroute = results.type;
 	                        auth = _this2.state.auth;
 	                        state.images = _this2.state.images;
@@ -470,12 +470,13 @@
 	  _createClass(About, [{
 	    key: 'render',
 	    value: function render() {
-	      var fccProjectURL, fccProjectName, appName, herokuURL, githubURL;
-	      fccProjectName = 'React Login Template';
-	      fccProjectURL = "#";
-	      appName = 'React Login Template';
+	      var fccProjectURL, fccProjectName, appName, appSum, herokuURL, githubURL;
+	      fccProjectName = 'Build a Pinterest Clone';
+	      fccProjectURL = "https://www.freecodecamp.com/challenges/build-a-pinterest-clone";
+	      appName = 'Eye See';
+	      appSum = 'A Place to Share What Your Eye Sees';
 	      herokuURL = "#";
-	      githubURL = "https://github.com/j-steve-martinez/react-template";
+	      githubURL = "https://github.com/j-steve-martinez/eye-see.git";
 
 	      return _react2.default.createElement(
 	        'div',
@@ -486,8 +487,25 @@
 	          _react2.default.createElement(
 	            'h1',
 	            null,
-	            appName
+	            appName,
+	            ' ',
+	            _react2.default.createElement(
+	              'small',
+	              null,
+	              appSum
+	            )
 	          )
+	        ),
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          'Work done for the freeCodeCamp project: ',
+	          _react2.default.createElement(
+	            'a',
+	            { href: fccProjectURL },
+	            fccProjectName
+	          ),
+	          ' '
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -4682,9 +4700,9 @@
 	        key: 'submit',
 	        value: function submit(e) {
 	            e.preventDefault();
-	            console.log(e.target);
-	            console.log(e.target.image.value);
-	            console.log(e.target.caption.value);
+	            // console.log(e.target);
+	            // console.log(e.target.image.value);
+	            // console.log(e.target.caption.value);
 	            var data, image, caption, username;
 	            image = e.target.image.value;
 	            if (e.target.caption.value === "") {
@@ -4697,7 +4715,14 @@
 	            /**
 	             * Close the dropdown and clear the fields
 	             */
-	            $('.dropdown-toggle').prop('aria-haspopup', false);
+	            $('.dropdown').removeClass('open');
+	            $('.dropdown-toggle').attr('aria-expanded', false);
+	            $('#image').val('');
+	            $('#caption').val('');
+
+	            /**
+	             * Send the data to the server
+	             */
 	            data = { image: image, caption: caption, route: 'add' };
 	            this.props.ajax(data);
 	        }
@@ -5056,7 +5081,7 @@
 	                welcome = "Welcome";
 	                name = "Please Login to add what you see.";
 	            }
-	            console.log(welcome);
+	            // console.log(welcome);
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'jumbotron' },
@@ -5226,9 +5251,9 @@
 	        value: function render() {
 	            var _this2 = this;
 
-	            console.log('User');
-	            console.log(this.props);
-	            console.log(this.state);
+	            // console.log('User');
+	            // console.log(this.props);
+	            // console.log(this.state);
 	            var books, booksHtml, borrowed, borrowedHtml, requests, requestsHtml, name, email, city, state, icon;
 
 	            /**
@@ -5362,16 +5387,16 @@
 	            var filtered = this.state.images.filter(function (item) {
 	                return item.userId === e.target.id;
 	            });
-	            console.log(filtered);
+	            // console.log(filtered);
 	            this.setState({ images: filtered });
 	        }
 	    }, {
 	        key: 'like',
 	        value: function like(e) {
 	            e.preventDefault();
-	            console.log('like');
-	            console.log(this.props);
-	            console.log(e.target.id);
+	            // console.log('like');
+	            // console.log(this.props);
+	            // console.log(e.target.id);
 	            var data = { route: 'like', imageId: e.target.id, type: this.props.type };
 	            this.props.ajax(data);
 	        }
@@ -5379,8 +5404,8 @@
 	        key: 'del',
 	        value: function del(e) {
 	            e.preventDefault();
-	            console.log('del');
-	            console.log(e.target.id);
+	            // console.log('del');
+	            // console.log(e.target.id);
 	            var data = { route: 'delete', imageId: e.target.id };
 	            this.props.ajax(data);
 	        }
@@ -5396,9 +5421,9 @@
 	        value: function render() {
 	            var _this2 = this;
 
-	            console.log('images props');
-	            console.log(this.props);
-	            console.log(this.state);
+	            // console.log('images props');
+	            // console.log(this.props);
+	            // console.log(this.state);
 
 	            var masonryOptions = {
 	                transitionDuration: '0.8s'

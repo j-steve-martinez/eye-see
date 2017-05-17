@@ -17,9 +17,9 @@ export default class Header extends React.Component {
     }
     submit(e) {
         e.preventDefault();
-        console.log(e.target);
-        console.log(e.target.image.value);
-        console.log(e.target.caption.value);
+        // console.log(e.target);
+        // console.log(e.target.image.value);
+        // console.log(e.target.caption.value);
         var data, image, caption, username;
         image = e.target.image.value;
         if (e.target.caption.value === "") {
@@ -32,7 +32,14 @@ export default class Header extends React.Component {
         /**
          * Close the dropdown and clear the fields
          */
-        $('.dropdown-toggle').prop('aria-haspopup', false);
+        $('.dropdown').removeClass('open');
+        $('.dropdown-toggle').attr('aria-expanded', false);
+        $('#image').val('');
+        $('#caption').val('');
+
+        /**
+         * Send the data to the server
+         */
         data = { image: image, caption: caption, route: 'add' }
         this.props.ajax(data);
 
@@ -59,7 +66,6 @@ export default class Header extends React.Component {
                         <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add Image <span className="caret"></span></a>
                         <ul className="dropdown-menu">
                             <form onSubmit={this.submit} className="navbar-form" >
-
                                 <div className="form-group">
                                     <label htmlFor="image">Image URL:</label>
                                     <input type="url" className="form-control" id="image" required />
