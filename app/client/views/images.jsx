@@ -3,6 +3,12 @@ import React from 'react';
 // var Masonry = require('react-masonry-component');
 import Masonry from 'react-masonry-component';
 
+/**
+ * Pollyfil for Object.assign used by react-image
+ */
+Object.assign || function (r) { for (var t = 1; t < arguments.length; t++) { var n = arguments[t]; for (var a in n) Object.prototype.hasOwnProperty.call(n, a) && (r[a] = n[a]) } return r };
+import Img from 'react-image'
+
 export default class Images extends React.Component {
     constructor(props) {
         super(props);
@@ -34,7 +40,7 @@ export default class Images extends React.Component {
         e.preventDefault();
         // console.log('del');
         // console.log(e.target.id);
-        var data = { route: 'delete', imageId: e.target.id};
+        var data = { route: 'delete', imageId: e.target.id };
         this.props.ajax(data);
     }
     componentWillReceiveProps(nextProps) {
@@ -46,7 +52,7 @@ export default class Images extends React.Component {
         // console.log('images props');
         // console.log(this.props);
         // console.log(this.state);
-
+        var brokenImg = '/public/img/broken.png';
         var masonryOptions = {
             transitionDuration: '0.8s'
         };
@@ -77,15 +83,21 @@ export default class Images extends React.Component {
             /**
              * check the likes
              */
+            //  onError="this.onerror=null;this.src='/public/img/Twitter.png';"
             if (element.likes > 0) {
                 var like = <span id={element._id} className="glyphicon glyphicon-star"></span>
             } else {
                 var like = <span id={element._id} className="glyphicon glyphicon-star-empty"></span>
             }
-            // console.log(element._id);
+
+            /**
+             * Set the image and fallback
+             */
+            var imgSrc = [element.url, brokenImg];
+
             return (
                 <div key={key} className="image-element-class">
-                    <img src={element.url} className="images" />
+                    <Img src={imgSrc} className="images" />
                     <div className='caption' >{element.caption}</div>
                     <div className='footer' >
                         {icon}

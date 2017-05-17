@@ -43,6 +43,7 @@
     "primus": "7.0.0",
     "react": "15.4.2",
     "react-dom": "15.4.2",
+    "react-image": "1.0.1",
     "react-masonry-component": "5.0.5",
     "ws": "2.2.3"
   },
