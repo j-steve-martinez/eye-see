@@ -7,6 +7,12 @@ body {
     background: $colHighlight;
 }
 
+.jumbotron {
+  color: $colDefault;
+  background-color: $bgDefault;
+  border:  .5px solid $colDefault;
+}
+
 .caption {
     text-align: center;
     margin-top: 3px;

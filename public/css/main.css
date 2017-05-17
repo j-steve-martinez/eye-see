@@ -1,6 +1,11 @@
 body {
   background: #fcf8e3; }
 
+.jumbotron {
+  color: #4e4a36;
+  background-color: #d4ca6e;
+  border: 0.5px solid #4e4a36; }
+
 .caption {
   text-align: center;
   margin-top: 3px;
