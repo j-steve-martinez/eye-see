@@ -57,7 +57,7 @@ export default class Images extends React.Component {
             transitionDuration: '0.8s'
         };
 
-        var delildElements = this.state.images.map((element, key) => {
+        var childElements = this.state.images.map((element, key) => {
             /**
              * Set the icon
              */
@@ -117,7 +117,7 @@ export default class Images extends React.Component {
                 options={masonryOptions}
                 disableImagesLoaded={false}
                 updateOnEachImageLoad={false}>
-                {delildElements}
+                {childElements}
             </Masonry>
         );
     }

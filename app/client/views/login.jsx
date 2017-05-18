@@ -36,11 +36,11 @@ export default class Login extends React.Component {
         return (
             <div className='jumbotron' >
                 <div className='page-header'>
-                    <h1>Welcome Back</h1>
-                    <h2>Please Log In with                 <a href='/auth/twitter'>
-                        <img className='social-icon' src='./public/img/Twitter.png' />
-                    </a></h2>
+                    <h1>Login With Twitter</h1>
                 </div>
+                    <a href='/auth/twitter'>
+                        <img className='social-icon' src='./public/img/Twitter.png' />
+                    </a>
 
 
                 {/*<a href='/auth/google'>

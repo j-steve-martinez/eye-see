@@ -270,7 +270,7 @@ export default class Main extends React.Component {
             // console.log(data);
             var route, auth = this.parseAuth(data.user);
             // console.log(auth._id);
-            auth._id ? route = 'user' : route = 'start'
+            auth._id ? route = 'user' : route = 'all'
             this.setState({ route: route, auth: auth })
         })
     }
@@ -311,7 +311,7 @@ export default class Main extends React.Component {
                 break;
         }
         return (
-            <div className="container" >
+            <div className="container-fluid" >
                 <Header router={this.router} ajax={this.ajax} auth={this.state.auth} />
                 {page}
             </div>

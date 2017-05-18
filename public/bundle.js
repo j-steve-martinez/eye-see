@@ -375,7 +375,7 @@
 	                var route,
 	                    auth = _this4.parseAuth(data.user);
 	                // console.log(auth._id);
-	                auth._id ? route = 'user' : route = 'start';
+	                auth._id ? route = 'user' : route = 'all';
 	                _this4.setState({ route: route, auth: auth });
 	            });
 	        }
@@ -419,7 +419,7 @@
 	            }
 	            return React.createElement(
 	                'div',
-	                { className: 'container' },
+	                { className: 'container-fluid' },
 	                React.createElement(_header2.default, { router: this.router, ajax: this.ajax, auth: this.state.auth }),
 	                page
 	            );
@@ -5008,18 +5008,13 @@
 	                    _react2.default.createElement(
 	                        'h1',
 	                        null,
-	                        'Welcome Back'
-	                    ),
-	                    _react2.default.createElement(
-	                        'h2',
-	                        null,
-	                        'Please Log In with                 ',
-	                        _react2.default.createElement(
-	                            'a',
-	                            { href: '/auth/twitter' },
-	                            _react2.default.createElement('img', { className: 'social-icon', src: './public/img/Twitter.png' })
-	                        )
+	                        'Login With Twitter'
 	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'a',
+	                    { href: '/auth/twitter' },
+	                    _react2.default.createElement('img', { className: 'social-icon', src: './public/img/Twitter.png' })
 	                )
 	            );
 	        }
@@ -5444,7 +5439,7 @@
 	                transitionDuration: '0.8s'
 	            };
 
-	            var delildElements = this.state.images.map(function (element, key) {
+	            var childElements = this.state.images.map(function (element, key) {
 	                /**
 	                 * Set the icon
 	                 */
@@ -5517,7 +5512,7 @@
 	                    options: masonryOptions,
 	                    disableImagesLoaded: false,
 	                    updateOnEachImageLoad: false },
-	                delildElements
+	                childElements
 	            );
 	        }
 	    }]);

@@ -261,8 +261,8 @@ module.exports = function (passport) {
         function (req, token, tokenSecret, profile, done) {
 
             process.nextTick(function () {
-                console.log('twitter profile');
-                console.log(profile);
+                // console.log('twitter profile');
+                // console.log(profile);
                 /**
                  * Check if logged in
                  */
