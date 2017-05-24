@@ -8,7 +8,7 @@ My [Eye See](https://eye-see.herokuapp.com/ "Eye See").
 
 MIT License. [Click here for more information.](LICENSE.md)
 
-#### Objective: Build a full stack JavaScript app that is functionally similar to this: http://bookjump.herokuapp.com/ and deploy it to Heroku.
+#### Objective: Build a full stack JavaScript app that is functionally similar to this: https://midnight-dust.glitch.me/# and deploy it to Heroku.
 
 ##### Note that for each project, you should create a new GitHub repository and a new - Heroku project. If you can't remember how to do this, revisit https://freecodecamp.com/challenges/get-set-for-our-dynamic-web-application-projects.
 
